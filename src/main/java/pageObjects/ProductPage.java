@@ -52,6 +52,18 @@ public class ProductPage extends BasePage {
         return webElement.getText();
     }
 
+    public ProductPage and() {
+        return this;
+    }
+
+    public ProductPage then() {
+        return this;
+    }
+
+    public ProductPage when() {
+        return this;
+    }
+
     public ProductPage wait(WebElement webElement) {
         this.wait(webElement, webDriverWait);
         return this;

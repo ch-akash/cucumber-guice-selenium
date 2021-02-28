@@ -31,11 +31,7 @@ public class BaseDriverImpl implements BaseDriver {
 
     @Override
     public void quit() {
-
-        if (webDriver != null) {
-            webDriver.quit();
-        }
-
+        if (webDriver != null) webDriver.quit();
     }
 
     @Override

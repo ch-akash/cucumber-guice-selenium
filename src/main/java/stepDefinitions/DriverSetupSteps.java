@@ -11,6 +11,6 @@ public class DriverSetupSteps {
 
     @After
     public void tearDownDriver() {
-        if (baseDriver.driver() != null) baseDriver.quit();
+        baseDriver.quit();
     }
 }

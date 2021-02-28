@@ -21,18 +21,20 @@ public class CheckOutFlowSteps extends CukeTest {
 
     @Given("user is on home page")
     public void userIsOnHomePage() {
-        productPage.visitPage();
+        productPage.when().visitPage();
     }
 
     @When("we select Tea collection to view")
     public void weSelectTeaCollectionToView() {
-        productPage.getTeaCollectionElement().click();
+        productPage.then().getTeaCollectionElement().click();
     }
 
     @And("we extract green tea description")
     public void weExtractGreenTeaDescription() {
         desc = productPage
+                .when()
                 .wait(productPage.getGreenTeaTextElement())
+                .then()
                 .getGreenTeaProductDescription()
                 .getText();
     }

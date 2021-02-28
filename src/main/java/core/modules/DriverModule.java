@@ -31,6 +31,6 @@ public class DriverModule extends AbstractModule {
                 .to(BaseDriverImpl.class)
                 .in(Scopes.SINGLETON);
         bind(BaseDriverImpl.class).in(Scopes.SINGLETON);
-        MODULE_LOGGER.info("All instanced up and running.");
+        MODULE_LOGGER.info("All instances are up and running.");
     }
 }
