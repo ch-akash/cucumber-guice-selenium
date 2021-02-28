@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ProductPage extends BasePage {
 
 
-    private WebDriverWait webDriverWait;
+    private final WebDriverWait webDriverWait;
 
     @Inject
     private BaseDriver baseDriver;
@@ -22,6 +22,10 @@ public class ProductPage extends BasePage {
     @Inject
     @Named("home.page")
     private String url;
+
+    @Inject
+    @Named("timeout.seconds")
+    private int timeoutSeconds;
 
     @FindBy(css = "span[class='button-content wsb-button-content']")
     private WebElement greenTeaTextElement;
@@ -34,7 +38,7 @@ public class ProductPage extends BasePage {
 
     @Inject
     public ProductPage(BaseDriver baseDriver) {
-        this.webDriverWait = new WebDriverWait(baseDriver.driver(), 60);
+        this.webDriverWait = new WebDriverWait(baseDriver.driver(), timeoutSeconds);
         PageFactory.initElements(baseDriver.driver(), this);
     }
 
