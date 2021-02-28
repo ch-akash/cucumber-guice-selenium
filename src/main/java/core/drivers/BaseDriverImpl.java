@@ -39,7 +39,7 @@ public class BaseDriverImpl implements BaseDriver {
 
     }
 
-    public WebDriver getNewDriverInstance() {
+    private WebDriver getNewDriverInstance() {
         if (webDriver != null) return webDriver;
         switch (driverName) {
             case "firefox" -> {

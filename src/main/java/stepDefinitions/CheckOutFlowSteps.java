@@ -2,9 +2,7 @@ package main.java.stepDefinitions;
 
 import com.google.inject.Inject;
 import io.cucumber.guice.ScenarioScoped;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
+import io.cucumber.java8.En;
 import main.java.pageObjects.ProductPage;
 import test.java.CukeTest;
 
@@ -12,35 +10,26 @@ import static test.base.BaseTest.TEST_LOGGER;
 
 
 @ScenarioScoped
-public class CheckOutFlowSteps extends CukeTest {
+public class CheckOutFlowSteps extends CukeTest implements En {
 
     @Inject
     protected ProductPage productPage;
-
     private String desc;
 
-    @Given("user is on home page")
-    public void userIsOnHomePage() {
-        productPage.when().visitPage();
-    }
+    public CheckOutFlowSteps() {
 
-    @When("we select Tea collection to view")
-    public void weSelectTeaCollectionToView() {
-        productPage.then().getTeaCollectionElement().click();
-    }
+        Given("^user is on home page$", () -> productPage.when().visitPage());
 
-    @And("we extract green tea description")
-    public void weExtractGreenTeaDescription() {
-        desc = productPage
+        When("^we select Tea collection to view$", () -> productPage.then().getTeaCollectionElement().click());
+
+        Then("^we extract green tea description$", () -> desc = productPage
                 .when()
                 .wait(productPage.getGreenTeaTextElement())
                 .then()
                 .getGreenTeaProductDescription()
-                .getText();
+                .getText());
+
+        And("^we just log it$", () -> TEST_LOGGER.info("Fetched Product description: {}", desc));
     }
 
-    @And("we just log it")
-    public void weJustLogIt() {
-        TEST_LOGGER.info("Fetched Product description: {}", desc);
-    }
 }
